@@ -1,0 +1,34 @@
+// Print all the subsets of a string in lexicographical order
+// str.size()<20
+
+#include<iostream>
+#include<set>
+using namespace std;
+multiset<string>s;
+string temp="";
+
+void sub(string str,int pos)
+{
+    s.insert(temp);
+    for(int i=pos;i<str.size();++i)
+    {
+        temp.push_back(str[i]);
+        sub(str,i+1);
+        temp.pop_back();   
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    while(n--)
+    {
+        s.clear();
+        temp="";
+        string str;
+        cin>>str;
+        sub(str,0);
+        for(auto x:s)
+            cout<<x<<"\n";
+    }
+}
