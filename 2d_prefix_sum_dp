@@ -4,6 +4,8 @@
 	each query contains a submatrix 
 	i1 l1 i2 l2 
 	output : sum of all elements of this submatrix
+	
+	Learn to use 2d pointers | It will help to pass 2d arrays to function, otherwise 2d array need to be declared globally
 */
 
 #include<iostream>
