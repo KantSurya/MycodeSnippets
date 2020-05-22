@@ -13,6 +13,7 @@ int ncr(int n, int r)
 }
 int main()
 {
+	cout<<"heha";
 	while(1)
 	{
 		int n,r;
