@@ -1,6 +1,10 @@
 /*
     Problem Statement : https://www.codechef.com/COOK39/problems/PPXOR
     Tutorial : https://www.geeksforgeeks.org/sum-of-xor-of-all-subarrays/
+    
+    Stackoverlow : https://stackoverflow.com/questions/20113622/algorithm-to-add-sum-of-every-possible-xor-sum-sub-array
+    Best SOlution : https://www.codechef.com/viewplaintext/2928504
+    
     sum of xor of all subarrays
     Xor, Subarray, Bit manipulation,    
 */
