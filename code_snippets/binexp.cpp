@@ -1,5 +1,3 @@
-<snippet>
-  <content><![CDATA[
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -17,36 +15,40 @@ using namespace std;
 #define debug(a)cout<<#a<<": "<<a<<"\n";
 #define hola cout<<"hola"<<endl;
 // #define int long long
-
 // ---------------------------------------------------------------------------
 const int mod = 1e9+7;
 const int maxn = 2e5 + 9;
 
 // ---------------------------------------------------------------------------
 void init(){}
+
+ll binexp(ll a, ll b){
+    ll temp = 1;
+    while(b>0){
+        if(b&1)temp=(temp*a)%mod;
+        a = (a*a)%mod;
+        b/=2;
+    }
+    return temp;
+}
+
 // ---------------------------------------------------------------------------
 void test_case(int tc)
 {
-	// cout<<"Case #"<<tc<<": ";
-	${2:}${0:}
-	init();
+    // cout<<"Case #"<<tc<<": ";
+    
+    init();
 }
 
 int32_t main()
 {
-	FASTIO;
-	// #ifndef ONLINE_JUDGE
-	// 	freopen("input.txt","r",stdin);
-	// 	freopen("output.txt","w",stdout);
-	// #endif
-	
-	int t=1;
-	${1:}//cin>>t;
-	for(int tc=1;tc<=t;++tc)test_case(tc);
-}
-]]></content>
-  <tabTrigger>cpp</tabTrigger>
-  <description>Template </description>
-  <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <!-- <scope >source.python</scope > -->
-</snippet>
+    FASTIO;
+    #ifndef ONLINE_JUDGE
+         freopen("input.txt","r",stdin);
+         // freopen("output.txt","w",stdout);
+    #endif
+    
+    int t=1;
+    //cin>>t;
+    for(int tc=1;tc<=t;++tc)test_case(tc);
+}	

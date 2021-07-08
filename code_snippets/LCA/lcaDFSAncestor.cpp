@@ -1,4 +1,3 @@
-// https://codeforces.com/gym/102694/problem/A
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -10,62 +9,66 @@ using namespace std;
 #define all(x) x.begin(),x.end()
 #define vi vector<int>
 #define pii pair<int,int>
-#define pb push_back
 #define eb emplace_back
-#define DEBUG(a...) cout<<#a<<": ";for(auto &it:a)cout<<it<<" ";cout<<endl;
+#define DEBUG(a...) cout<<#a<<": ";for(auto &it:a)cout<<it<<" ";cout<<"\n";
 #define debug(a)cout<<#a<<": "<<a<<"\n";
-#define hola cout<<"hola"<<endl;
-// #define int long long
+#define int long long
+
 // ---------------------------------------------------------------------------
 const int mod = 1e9+7;
 const int maxn = 2e5 + 9;
-int n;
-vector<vi>graph;
-vector<bool>vis;
 
 // ---------------------------------------------------------------------------
+int n;
+vector<vi>graph,parent;
+int hMax;
+int timer;
+vi tin,tout;
+
 void init(){
     graph = vector<vi>(n+1);
-    vis = vector<bool>(n+1,0);
+    hMax = log2(n)+1;
+    parent = vector<vi>(n+1,vector<int>(hMax+1,n));
+    timer = 0;
+    tin = vi(n+1,-1);
+    tout = vi(n+1,-1);
 }
-int bfs(int src,bool ok){
-    vi dist(n+1);
-    vis = vector<bool>(n+1,0);
-    int maxDistance = 0;
-    int maxDistanceNode = 1;
-    queue<int>q;
-    q.push(src);
-    while(!q.empty()){
-        int u = q.front();
-        q.pop();
-        for(auto & x : graph[u]){
-            if(!vis[x]){
-                dist[x] = dist[u]+1;
-                if(dist[x]>maxDistance){
-                    maxDistance = dist[x];
-                    maxDistanceNode = x;
-                }
-                vis[x]=true;
-                q.push(x);
-            }
+
+
+void dfs(int node,int par){
+    tin[node] = ++timer;
+    parent[node][0]=par;
+    for(int i=1;i<=hMax;++i){
+        parent[node][i] = parent[parent[node][i-1]][i-1];
+    }
+    for(auto & child : graph[node]){
+        if(tin[child]==-1)dfs(child,node);
+    }
+    tout[node] = ++timer;
+}
+
+
+bool isAncestor(int u,int v){
+    return (tin[u]<=tin[v] && tout[u]>=tout[v]);
+}
+
+
+int getLCA(int u,int v){
+    if(isAncestor(u,v))return u;
+    if(isAncestor(v,u))return v;
+    for(int j=hMax;j>=0;--j){
+        if(!isAncestor(parent[u][j],v)){
+            u = parent[u][j];
         }
     }
-    if(ok)return maxDistanceNode;
-    else return maxDistance;
+    return parent[u][0];
 }
 // ---------------------------------------------------------------------------
 void test_case(int tc)
 {
     // cout<<"Case #"<<tc<<": ";
-    cin>>n;
     init();
-    fi(1,n-1){
-        int u,v;cin>>u>>v;
-        graph[u].pb(v);
-        graph[v].pb(u);
-    }
-    int diameter = bfs(bfs(1,1),0);
-    cout<<3*diameter;
+    cout<<"hola"<<endl;
 }
 
 int32_t main()
@@ -79,4 +82,4 @@ int32_t main()
     int t=1;
     //cin>>t;
     for(int tc=1;tc<=t;++tc)test_case(tc);
-}	
+}

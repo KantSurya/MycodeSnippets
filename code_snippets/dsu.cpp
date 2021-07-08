@@ -34,7 +34,7 @@ int find_set(int x){
 void union_set(int u,int v){
     u = find_set(u);
     v = find_set(v);
-    if(u!=v){
+    if( u!=v ){
         if(sz[v]>sz[u])swap(u,v);
         sz[u]+=sz[v];
         parent[v]=u;
