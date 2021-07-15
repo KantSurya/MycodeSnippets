@@ -67,6 +67,7 @@ int get_lca(int u,int v){
         }
     }
     if(u==v)return u;
+    // it is necessary to go decreasingly from : hMax - 1 to 0 
     for(int j = hMax - 1 ; j>=0 ; --j){
         if(up[u][j]!=up[v][j]){
             u = up[u][j];
